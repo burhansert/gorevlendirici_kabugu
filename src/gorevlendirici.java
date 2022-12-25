@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class gorevlendirici {
 
-	static final int prosesSayisi = 4;
+	//static final int prosesSayisi = 4;
 
 	LinkedList<process> prosesler;
 	LinkedList<process> kuyruk1;
@@ -199,16 +199,27 @@ public class gorevlendirici {
 		String splitBy = ",";  
 		try   
 		{  
-		//parsing a CSV file into BufferedReader class constructor  
 		BufferedReader br = new BufferedReader(new FileReader("giriş.txt"));  
 		int prosesno =1;
 		while ((line = br.readLine()) != null)   //returns a Boolean value  
 		{  
-	
-		String[] employee = line.split(splitBy);    // use comma as separator  
-		//System.out.println( employee[0] + "--" + employee[1] +"--" + employee[2]);  
+		String[] proses = line.split(splitBy);    // use comma as separator  
+		process yeniProses1 = new process(prosesno,Integer.parseInt(proses[0]) ,Integer.parseInt(proses[2]), Integer.parseInt(proses[1]));
+		prosesler.add(yeniProses1);
+		varisZamanlari.add(yeniProses1.varisZamani);
+		patlamaZamanlari.add(yeniProses1.patlamaZamani);
+		baslamaZamanlari.add(-1);
+		bitisZamanlari.add(-1);
+		System.out.println(yeniProses1.IdGetir() + "\t\t"+ yeniProses1.varisZamaniGetir() + "\t\t"+ yeniProses1.patlamaZamaniGetir());
+		prosesno++;
+		}  
+		}   
+		catch (IOException e)   
+		{  
+		e.printStackTrace();  
+		} 
 		
-		process yeniProses1 = new process(prosesno,Integer.parseInt(employee[0]) ,Integer.parseInt(employee[2]), Integer.parseInt(employee[1]));
+		/*process yeniProses1 = new process(1, 0, 1,0);
 		prosesler.add(yeniProses1);
 		varisZamanlari.add(yeniProses1.varisZamani);
 		patlamaZamanlari.add(yeniProses1.patlamaZamani);
@@ -216,13 +227,22 @@ public class gorevlendirici {
 		bitisZamanlari.add(-1);
 		System.out.println(yeniProses1.IdGetir() + "\t\t"+ yeniProses1.varisZamaniGetir() + "\t\t"+ yeniProses1.patlamaZamaniGetir());
 		
-		prosesno++;
-		}  
-		}   
-		catch (IOException e)   
-		{  
-		e.printStackTrace();  
-		}  	
+		process yeniProses2 = new process(2, 0, 4,0);
+		prosesler.add(yeniProses2);
+		varisZamanlari.add(yeniProses2.varisZamani);
+		patlamaZamanlari.add(yeniProses2.patlamaZamani);
+		baslamaZamanlari.add(-1);
+		bitisZamanlari.add(-1);
+		System.out.println(yeniProses2.IdGetir() + "\t\t"+ yeniProses2.varisZamaniGetir() + "\t\t"+ yeniProses2.patlamaZamaniGetir());
+		
+		process yeniProses3 = new process(3, 13, 6,0);
+		prosesler.add(yeniProses3);
+		varisZamanlari.add(yeniProses3.varisZamani);
+		patlamaZamanlari.add(yeniProses3.patlamaZamani);
+		baslamaZamanlari.add(-1);
+		bitisZamanlari.add(-1);
+		System.out.println(yeniProses3.IdGetir() + "\t\t"+ yeniProses3.varisZamaniGetir() + "\t\t"+ yeniProses3.patlamaZamaniGetir());
+		*/
 	}
 
 }
