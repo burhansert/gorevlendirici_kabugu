@@ -7,8 +7,6 @@ import java.io.IOException;
 
 public class gorevlendirici {
 
-	//static final int prosesSayisi = 4;
-
 	LinkedList<process> prosesler;
 	LinkedList<process> kuyruk1;
 	LinkedList<process> kuyruk2;
@@ -36,14 +34,13 @@ public class gorevlendirici {
 		System.out.print( "P" + process.IdGetir()+ " oluşturuldu.");
 		System.out.print(ANSI_RESET);
 	}*/
-	
 	static String ANSI_RESET = "\u001B[0m";
 	public static void main(String args[]) {
 		gorevlendirici mlfq = new gorevlendirici();
 		mlfq.initialize();
 		int currentTime = 0;
-		int linePrint = 0;
-		int totalWaitingTime = 0, totalTurnAroundTime = 0, totalResponseTime = 0;
+		//int linePrint = 0;
+		//int totalWaitingTime = 0, totalTurnAroundTime = 0, totalResponseTime = 0;
 
 		System.out.println("------------------------------------------------");
 		System.out.println("Zaman\t\tAçıklama");
@@ -62,7 +59,7 @@ public class gorevlendirici {
 					process process = mlfq.prosesler.get(i);
 					mlfq.kuyruk1.add(process);
 					yeniOlusanProsesler.add(process);
-					if (linePrint == 0) {
+					/*if (linePrint == 0) {
 						System.out.print("\033[38;5;"+process.renkGetir()+"m");
 						System.out.print(currentTime + " s\t\t");
 						System.out.print(ANSI_RESET);
@@ -71,7 +68,7 @@ public class gorevlendirici {
 					
 					System.out.print("\033[38;5;"+process.renkGetir()+"m");
 					System.out.print( "P" + process.IdGetir()+ " oluşturuldu.");
-					System.out.print(ANSI_RESET);
+					System.out.print(ANSI_RESET);*/
 				}
 			}
 
@@ -80,11 +77,12 @@ public class gorevlendirici {
 			process currentProcess;
 			if (mlfq.kuyruk1.size() != 0) {
 				currentProcess = mlfq.kuyruk1.get(0);
-				if (linePrint == 0) {
-					
-					System.out.print(currentTime + " s\t\t");
-					linePrint = 1;
-				}
+				//if (linePrint == 0) {
+					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
+					System.out.print(currentTime + " sn\t\t");
+					System.out.print(ANSI_RESET);
+				//	linePrint = 1;
+				//}
 				if (currentProcess.onceligiNe() == 0)
 					mlfq.baslamaZamanlari.set(
 							currentProcess.IdGetir() - 1, currentTime);
@@ -93,21 +91,21 @@ public class gorevlendirici {
 						mlfq.kuyruk1.remove();
 						mlfq.bitisZamanlari.set(currentProcess.IdGetir() - 1, currentTime);
 						System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-						System.out.print("P" + currentProcess.IdGetir()	+ " çalışıyor,Q1 kuyruğunda,öncelik "+currentProcess.onceligiNe()+". Sonlandı.");
+						System.out.print("proses sonlandı \t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:0 sn)");
 						System.out.print(ANSI_RESET);
 					} else {
 						currentProcess.patlamaZamaniAyarla(currentProcess.patlamaZamaniGetir() - 1);
 						System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-						System.out.print("P" + currentProcess.IdGetir()	+ " çalışıyor,Q1 kuyruğunda,öncelik "+currentProcess.onceligiNe()+". Askıya alındı.");
+						System.out.print("yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
 						System.out.print(ANSI_RESET);
 						currentProcess.oncelikAyarla(currentProcess.onceligiNe() + 1);
 						if (currentProcess.onceligiNe() == 8) {
 							currentProcess.oncelikAyarla(0);
 							mlfq.kuyruk2.add(currentProcess);
 							mlfq.kuyruk1.remove(currentProcess);
-							System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-							System.out.print("P" + currentProcess.IdGetir()	+ " yaşlandı,Q1 den Q2 ye taşındı");
-							System.out.print(ANSI_RESET);
+							//System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
+							//System.out.print("P" + currentProcess.IdGetir()	+ " yaşlandı,Q1 den Q2 ye taşındı");
+							//System.out.print(ANSI_RESET);
 						}
 					}
 				}
@@ -115,10 +113,12 @@ public class gorevlendirici {
 		
 			else if (mlfq.kuyruk2.size() != 0) {
 				currentProcess = mlfq.kuyruk2.get(0);
-				if (linePrint == 0) {
-					System.out.print(currentTime + " s\t\t");
-					linePrint = 1;
-				}
+				//if (linePrint == 0) {
+					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
+					System.out.print(currentTime + " sn\t\t");
+					System.out.print(ANSI_RESET);
+					//linePrint = 1;
+				//}
 				if (currentProcess.onceligiNe() < 16) {
 					if (currentProcess.patlamaZamaniGetir() <= 1) {
 						mlfq.kuyruk2.remove();
@@ -136,9 +136,9 @@ public class gorevlendirici {
 							currentProcess.oncelikAyarla(0);
 							mlfq.kuyruk3.add(currentProcess);
 							mlfq.kuyruk2.remove(currentProcess);
-							System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-							System.out.print("P" + currentProcess.IdGetir()	+ " yaşlandı, Q2 den Q3 e taşındı");
-							System.out.print(ANSI_RESET);
+							//System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
+							//System.out.print("P" + currentProcess.IdGetir()	+ " yaşlandı, Q2 den Q3 e taşındı");
+							//System.out.print(ANSI_RESET);
 						}
 					}
 				}
@@ -146,11 +146,12 @@ public class gorevlendirici {
 
 			else if (mlfq.kuyruk3.size() != 0) {
 				currentProcess = mlfq.kuyruk3.get(0);
-				if (linePrint == 0) {
-					
-					System.out.print(currentTime + " s\t\t");
-					linePrint = 1;
-				}
+				//if (linePrint == 0) {
+					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
+					System.out.print(currentTime + " sn\t\t");
+					System.out.print(ANSI_RESET);
+				//	linePrint = 1;
+				//}
 				System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
 				System.out.print("P" + currentProcess.IdGetir()	+ " çalışıyor,Q3 kuyruğunda. Askıya alındı.");
 				System.out.print(ANSI_RESET);
@@ -164,27 +165,10 @@ public class gorevlendirici {
 					currentProcess.patlamaZamaniAyarla(currentProcess.patlamaZamaniGetir() - 1);
 			}
 			currentTime++;
-			if (linePrint == 1)
+			//if (linePrint == 1)
 				System.out.println();
-			linePrint = 0;
+			//linePrint = 0;
 		}
-
-		for (int i = 0; i < mlfq.patlamaZamanlari.size(); i++) {
-			totalWaitingTime += mlfq.bitisZamanlari.get(i)
-					- (mlfq.varisZamanlari.get(i) + mlfq.patlamaZamanlari
-							.get(i));
-			totalTurnAroundTime += mlfq.bitisZamanlari.get(i)
-					- mlfq.varisZamanlari.get(i);
-			totalResponseTime += mlfq.baslamaZamanlari.get(i)
-					- mlfq.varisZamanlari.get(i);
-		}
-
-		System.out.println("\nOrtalama bekleme zamanı = "
-				+ (totalWaitingTime / mlfq.varisZamanlari.size()));
-		System.out.println("Average turnaround time = "
-				+ (totalTurnAroundTime / mlfq.varisZamanlari.size()));
-		System.out.println("Average response time = "
-				+ (totalResponseTime / mlfq.varisZamanlari.size()));
 	}
 
 	public void initialize() {
