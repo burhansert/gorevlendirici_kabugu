@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;  
 import java.io.IOException;  
 
-public class gorevlendirici {
+public class main {
 
 	LinkedList<process> prosesler;
 	LinkedList<process> kuyruk1;
@@ -17,7 +17,7 @@ public class gorevlendirici {
 	LinkedList<Integer> patlamaZamanlari;
 	//LinkedList<Integer> bitisZamanlari;
 
-	gorevlendirici() {
+	main() {
 		prosesler = new LinkedList<process>();
 		kuyruk1 = new LinkedList<process>();
 		kuyruk2 = new LinkedList<process>();
@@ -36,7 +36,7 @@ public class gorevlendirici {
 	}*/
 	static String ANSI_RESET = "\u001B[0m";
 	public static void main(String args[]) {
-		gorevlendirici mlfq = new gorevlendirici();
+		main mlfq = new main();
 		mlfq.initialize();
 		int currentTime = 0;
 		//int linePrint = 0;
@@ -164,8 +164,6 @@ public class gorevlendirici {
 					mlfq.kuyruk3.removeFirst();
 					mlfq.kuyruk3.add(currentProcess);
 				}
-				
-
 			}
 			
 			currentTime++;
@@ -174,15 +172,9 @@ public class gorevlendirici {
 	}
 
 	public void initialize() {
-		
 		System.out.println("Process Id\tVarış Zamanı\tÖncelik\t\tPatlama Zamanı");
 		
-		/*
-		varış zamanı/öncelik/patlama zamanı
-		12,0,1
-		12,1,2
-		13,3,6
-		*/
+
 		String line = "";  
 		String splitBy = ",";  
 		try   
