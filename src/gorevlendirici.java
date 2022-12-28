@@ -77,17 +77,16 @@ public class gorevlendirici {
 			process currentProcess;
 			if (mlfq.kuyruk1.size() != 0) {
 				currentProcess = mlfq.kuyruk1.get(0);
-				//if (linePrint == 0) {
-					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-					System.out.print(currentTime + " sn\t\t");
-					System.out.print(ANSI_RESET);
-				//	linePrint = 1;
-				//}
-				if (currentProcess.onceligiNe() == 0)
-					mlfq.baslamaZamanlari.set(
-							currentProcess.IdGetir() - 1, currentTime);
-				if (currentProcess.onceligiNe() < 8) {
-					if (currentProcess.patlamaZamaniGetir() <= 1) {
+				System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
+				System.out.print(currentTime + " sn\t\t");
+				System.out.print(ANSI_RESET);
+
+				if (currentProcess.onceligiNe() == 0) mlfq.baslamaZamanlari.set(currentProcess.IdGetir() - 1, currentTime);
+				
+				//if (currentProcess.onceligiNe() < 8) 
+				//{
+					if (currentProcess.patlamaZamaniGetir() <= 1)
+					{
 						mlfq.kuyruk1.remove();
 						mlfq.bitisZamanlari.set(currentProcess.IdGetir() - 1, currentTime);
 						System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
@@ -99,75 +98,69 @@ public class gorevlendirici {
 						System.out.print("yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
 						System.out.print(ANSI_RESET);
 						currentProcess.oncelikAyarla(currentProcess.onceligiNe() + 1);
-						if (currentProcess.onceligiNe() == 8) {
-							currentProcess.oncelikAyarla(0);
+						//if (currentProcess.onceligiNe() == 8) {
+							//currentProcess.oncelikAyarla(0);
 							mlfq.kuyruk2.add(currentProcess);
 							mlfq.kuyruk1.remove(currentProcess);
 							//System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
 							//System.out.print("P" + currentProcess.IdGetir()	+ " yaşlandı,Q1 den Q2 ye taşındı");
 							//System.out.print(ANSI_RESET);
-						}
+						//}
 					}
-				}
+				//}
 			}
 		
 			else if (mlfq.kuyruk2.size() != 0) {
 				currentProcess = mlfq.kuyruk2.get(0);
-				//if (linePrint == 0) {
-					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-					System.out.print(currentTime + " sn\t\t");
-					System.out.print(ANSI_RESET);
-					//linePrint = 1;
-				//}
-				if (currentProcess.onceligiNe() < 16) {
+				System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
+				System.out.print(currentTime + " sn\t\t");
+				System.out.print(ANSI_RESET);
+
+				//if (currentProcess.onceligiNe() < 16) {
 					if (currentProcess.patlamaZamaniGetir() <= 1) {
 						mlfq.kuyruk2.remove();
 						mlfq.bitisZamanlari.set(currentProcess.IdGetir() - 1, currentTime);
 						System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-						System.out.print("P" + currentProcess.IdGetir()	+ " çalışıyor,Q2 kuyruğunda. Sonlandı.");
+						System.out.print("proses sonlandı \t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:0 sn)");
 						System.out.print(ANSI_RESET);
 					} else {
 						currentProcess.patlamaZamaniAyarla(currentProcess.patlamaZamaniGetir() - 1);
 						currentProcess.oncelikAyarla(currentProcess.onceligiNe() + 1);
 						System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-						System.out.print("P" + currentProcess.IdGetir()	+ " çalışıyor,Q2 kuyruğunda. Askıya alındı.");
+						System.out.print("yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
 						System.out.print(ANSI_RESET);
-						if (currentProcess.onceligiNe() == 16) {
-							currentProcess.oncelikAyarla(0);
-							mlfq.kuyruk3.add(currentProcess);
-							mlfq.kuyruk2.remove(currentProcess);
-							//System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-							//System.out.print("P" + currentProcess.IdGetir()	+ " yaşlandı, Q2 den Q3 e taşındı");
-							//System.out.print(ANSI_RESET);
-						}
+
+						mlfq.kuyruk3.add(currentProcess);
+						mlfq.kuyruk2.remove(currentProcess);
+
 					}
-				}
+				//}
 			}
 
 			else if (mlfq.kuyruk3.size() != 0) {
 				currentProcess = mlfq.kuyruk3.get(0);
-				//if (linePrint == 0) {
-					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-					System.out.print(currentTime + " sn\t\t");
-					System.out.print(ANSI_RESET);
-				//	linePrint = 1;
-				//}
 				System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-				System.out.print("P" + currentProcess.IdGetir()	+ " çalışıyor,Q3 kuyruğunda. Askıya alındı.");
+				System.out.print(currentTime + " sn\t\t");
 				System.out.print(ANSI_RESET);
+		
+
 				if (currentProcess.patlamaZamaniGetir() <= 1) {
 					mlfq.kuyruk3.remove();
 					mlfq.bitisZamanlari.set(currentProcess.IdGetir() - 1, currentTime);
 					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-					System.out.print("P" + currentProcess.IdGetir()	+ " çalışıyor,Q3 kuyruğunda. Sonlandı");
+					System.out.print("proses sonlandı \t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:0 sn)");
 					System.out.print(ANSI_RESET);
 				} else
+				{
 					currentProcess.patlamaZamaniAyarla(currentProcess.patlamaZamaniGetir() - 1);
+					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
+					System.out.print("yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
+					System.out.print(ANSI_RESET);
+				}
 			}
+			
 			currentTime++;
-			//if (linePrint == 1)
-				System.out.println();
-			//linePrint = 0;
+			System.out.println();
 		}
 	}
 
