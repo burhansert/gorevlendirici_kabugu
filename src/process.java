@@ -63,5 +63,4 @@ public class process {
 	public void patlamaZamaniAyarla(int patlamaZamani) {
 		this.patlamaZamani = patlamaZamani;
 	}
-
 }
