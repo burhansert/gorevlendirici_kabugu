@@ -7,7 +7,17 @@ public class process {
 	int patlamaZamani;
 	int oncelik;
 	int renk;
+	boolean ilkDefaCalisti=true; //ilk defa çalıştığında true olacak diğer durumlarda false
 	
+	public boolean ilkDefaMiCalisti() {
+		return ilkDefaCalisti;
+	}
+	
+
+	public void ilkDefaMiCalistiAyarla(boolean ilkDefaCalisti) {
+		this.ilkDefaCalisti = ilkDefaCalisti;
+	}
+		
 	public int onceligiNe() {
 		return oncelik;
 	}

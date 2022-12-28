@@ -86,12 +86,21 @@ public class gorevlendirici {
 					{
 						mlfq.kuyruk1.remove();
 						System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-						System.out.print("proses sonlandı \t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:0 sn)");
+						System.out.print("proses sonlandı \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:0 sn)");
 						System.out.print(ANSI_RESET);
 					} else {
+						
 						currentProcess.patlamaZamaniAyarla(currentProcess.patlamaZamaniGetir() - 1);
 						System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-						System.out.print("yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
+						if(currentProcess.ilkDefaMiCalisti())
+						{
+							System.out.print("proses başladı \t\t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
+							currentProcess.ilkDefaMiCalistiAyarla(false);
+						}
+						else {
+							System.out.print("proses yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
+							
+						}
 						System.out.print(ANSI_RESET);
 		
 						if (currentProcess.onceligiNe() != 0)
@@ -114,13 +123,13 @@ public class gorevlendirici {
 						mlfq.kuyruk2.remove();
 						//mlfq.bitisZamanlari.set(currentProcess.IdGetir() - 1, currentTime);
 						System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-						System.out.print("proses sonlandı \t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:0 sn)");
+						System.out.print("proses sonlandı \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:0 sn)");
 						System.out.print(ANSI_RESET);
 					} else {
 						currentProcess.patlamaZamaniAyarla(currentProcess.patlamaZamaniGetir() - 1);
 		
 						System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-						System.out.print("yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
+						System.out.print("proses yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
 						System.out.print(ANSI_RESET);
 						currentProcess.oncelikAyarla(currentProcess.onceligiNe() + 1);
 						
@@ -143,13 +152,13 @@ public class gorevlendirici {
 					mlfq.kuyruk3.remove();
 					//mlfq.bitisZamanlari.set(currentProcess.IdGetir() - 1, currentTime);
 					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-					System.out.print("proses sonlandı \t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:0 sn)");
+					System.out.print("proses sonlandı \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:0 sn)");
 					System.out.print(ANSI_RESET);
 				} else
 				{
 					currentProcess.patlamaZamaniAyarla(currentProcess.patlamaZamaniGetir() - 1);
 					System.out.print("\033[38;5;"+currentProcess.renkGetir()+"m");
-					System.out.print("yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
+					System.out.print("proses yürütülüyor \t\t(id:"+currentProcess.IdGetir()+"\töncelik:"+currentProcess.onceligiNe()+"\tkalan süre:"+currentProcess.patlamaZamaniGetir()+" sn)");
 					System.out.print(ANSI_RESET);
 					
 					mlfq.kuyruk3.removeFirst();
