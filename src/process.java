@@ -33,14 +33,14 @@ public class process {
 		this.oncelik = oncelik;
 		
 		Random rand = new Random();
-		renk = rand.nextInt(256);
+		renk = rand.nextInt(256);   //Rastgele renk secilmesi saglandi.
 	}
 
 	public int IdGetir() {  //Process ID donduren fonksiyon tanimlandi.
 		return Id;
 	}
 
-	public int renkGetir() { //Renk kodu donduren fonksiyon tanimlandi.
+	public int renkGetir() { //Renk donduren fonksiyon tanimlandi.
 		return renk;
 	}
 	
