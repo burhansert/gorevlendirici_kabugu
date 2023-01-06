@@ -9,20 +9,20 @@ public class process {
 	int renk;
 	boolean ilkDefaCalisti=true; //ilk defa çalıştığında true olacak diğer durumlarda false
 	
-	public boolean ilkDefaMiCalisti() {
+	public boolean ilkDefaMiCalisti() {  //Ilk defa calisip calismadigi kontrolu yapildi.
 		return ilkDefaCalisti;
 	}
 	
 
-	public void ilkDefaMiCalistiAyarla(boolean ilkDefaCalisti) {
+	public void ilkDefaMiCalistiAyarla(boolean ilkDefaCalisti) {  //Ilk defa calistigi bildirildi.
 		this.ilkDefaCalisti = ilkDefaCalisti;
 	}
 		
-	public int onceligiNe() {
+	public int onceligiNe() {  //Oncelik donduren fonksiyon tanimlandi.
 		return oncelik;
 	}
 
-	public void oncelikAyarla(int oncelik) {
+	public void oncelikAyarla(int oncelik) {  //Oncelik ayarlayabilen fonksiyon tanimlandi.
 		this.oncelik = oncelik;
 	}
 
@@ -36,31 +36,31 @@ public class process {
 		renk = rand.nextInt(256);
 	}
 
-	public int IdGetir() {
+	public int IdGetir() {  //Process ID donduren fonksiyon tanimlandi.
 		return Id;
 	}
 
-	public int renkGetir() {
+	public int renkGetir() { //Renk kodu donduren fonksiyon tanimlandi.
 		return renk;
 	}
 	
-	public void IdAyarla(int Id) {
+	public void IdAyarla(int Id) { //Id degisikligi yapmaya yarayan fonksiyon tanimlandi.
 		this.Id = Id;
 	}
 
-	public int varisZamaniGetir() {
+	public int varisZamaniGetir() {  //Varış zamanini donduren fonksiyon tanimlandi.
 		return varisZamani;
 	}
 
-	public void varisZamaniAyarla(int varisZamani) {
+	public void varisZamaniAyarla(int varisZamani) { //Varis zamanini degistirmeye yarayan fonksiyon tanimlandi.
 		this.varisZamani = varisZamani;
 	}
 
-	public int patlamaZamaniGetir() {
+	public int patlamaZamaniGetir() {  //Patlama zamanini donduren fonksiyon tanimlandi.
 		return patlamaZamani;
 	}
 
-	public void patlamaZamaniAyarla(int patlamaZamani) {
+	public void patlamaZamaniAyarla(int patlamaZamani) { //Patlama zamaninin degistirilmesini saglayan fonksiyon tanimlandi.
 		this.patlamaZamani = patlamaZamani;
 	}
 }
