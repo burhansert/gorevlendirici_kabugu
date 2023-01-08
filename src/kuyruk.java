@@ -18,8 +18,6 @@ public class kuyruk {
 	
 	kuyruk()
 	{
-		
-		
 		prosesler = new LinkedList<process>();
 		kuyruk1 = new LinkedList<process>();
 		kuyruk2 = new LinkedList<process>();
